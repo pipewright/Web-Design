@@ -1,6 +1,7 @@
 
 
 
+
 const addProductButton = document.getElementById('add-product-button')
 const createProductModal = document.getElementById('create-product-modal')
 const closeProductModal = document.getElementById('close-product-modal')
@@ -46,7 +47,7 @@ async function fetchAllProductsAndBuildBlocks() {
 }
 
 function buildProductBlock(productId, title, image, status, pricePerUnit, description) {
-    let productRowContainer = createDOMElement('div', 'row-container', '', productsContainer)
+    let productRowContainer = createDOMElement('div', 'product-row-container', '', productsContainer)
 
     // Image + Title
     let productTitleBlock = createDOMElement('div', 'text-div-20', '', productRowContainer);
