@@ -1,15 +1,4 @@
 
-const addProductButton = document.getElementById('add-product-button')
-const createProductModal = document.getElementById('create-product-modal')
-const closeProductModal = document.getElementById('close-product-modal')
-
-addProductButton.addEventListener('click', () => {
-    createProductModal.style.display = 'flex'
-})
-
-closeProductModal.addEventListener('click', () => {
-    createProductModal.style.display = 'none'
-})
 
 const tabsMapping = {
     'tab-dashboard': 'dashboard-tab-body',
