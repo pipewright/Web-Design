@@ -1,9 +1,14 @@
 async function fetchAndDisplayUsers() {
+    const usersTabContainer = document.getElementById('users-tab-container'); // Ensure this is in your HTML
     const usersContainer = document.getElementById('users-container'); // Ensure this is in your HTML
 
     // Clear existing users display
     while (usersContainer.firstChild) {
         usersContainer.removeChild(usersContainer.firstChild);
+    }
+
+    while (usersTabContainer.firstChild) {
+        usersTabContainer.removeChild(usersTabContainer.firstChild);
     }
 
     try {
@@ -26,12 +31,12 @@ function buildUserBlock(userId, fullName, email, phoneNumber, dateCreated) {
     userRowContainer.className = 'user-row-container';
 
     // User Name
-    let userNameBlock = createDOMElement('div', 'text-div-20-vertical', '', userRowContainer);
+    let userNameBlock = createDOMElement('div', 'text-div-25-vertical', '', userRowContainer);
     createDOMElement('div', 'text-bold', fullName, userNameBlock);
     createDOMElement('div', 'text-light', email, userNameBlock);
 
     // Date Created
-    let dateCreateBlock = createDOMElement('div', 'text-div-20', '', userRowContainer);
+    let dateCreateBlock = createDOMElement('div', 'text-div-15', '', userRowContainer);
     createDOMElement('div', 'text-light', dateCreated, dateCreateBlock);
 
 
@@ -40,13 +45,18 @@ function buildUserBlock(userId, fullName, email, phoneNumber, dateCreated) {
     createDOMElement('div', 'text-light', phoneNumber, phoneNumberBlock);
 
     // User ID
-    let userIDBlock = createDOMElement('div', 'text-div-20', '', userRowContainer);
+    let userIDBlock = createDOMElement('div', 'text-div-30', '', userRowContainer);
     createDOMElement('div', 'text-light', userId, userIDBlock);
 
     // Actions
     let actionsBlock = createDOMElement('div', 'text-div-10', '', userRowContainer);
 
+    // Append the original container
     document.getElementById('users-container').appendChild(userRowContainer);
+
+    // Clone and append the clone to the second container
+    let cloneUserRowContainer = userRowContainer.cloneNode(true);
+    document.getElementById('users-tab-container').appendChild(cloneUserRowContainer);
 }
 
 
