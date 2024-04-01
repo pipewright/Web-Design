@@ -37,6 +37,8 @@ async function fetchAllProductsAndBuildBlocks() {
 
     try {
         const productsSnapshot = await db.collection('products').get();
+        productsSummaryText.innerHTML = `${productsSnapshot.docs.length}`;
+
         for (let doc of productsSnapshot.docs) {
             const product = doc.data();
             buildProductBlock(doc.id, product.title, product.image, product.status, product.price, product.description);
