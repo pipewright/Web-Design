@@ -18,6 +18,9 @@ async function fetchAndDisplayOrders() {
             orders.push(order);
         });
 
+        // Update the total orders count
+        ordersSummaryText.innerHTML = `${orders.length}`;
+
         // Sort orders by 'datePurchased' in descending order (most recent first)
         orders.sort((a, b) => b.datePurchased - a.datePurchased);
 
