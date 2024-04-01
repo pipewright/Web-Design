@@ -13,6 +13,8 @@ async function fetchAndDisplayUsers() {
 
     try {
         const usersSnapshot = await db.collection('users').get();
+        let usersCount = 0
+
         usersSnapshot.forEach(doc => {
             const user = doc.data();
             // Assuming 'dateCreated' is stored as a Firestore Timestamp object or a Unix timestamp
@@ -20,8 +22,11 @@ async function fetchAndDisplayUsers() {
             const formattedDateCreated = user.dateCreated ? new Date(user.dateCreated.seconds * 1000).toLocaleDateString("en-US") : 'Unknown';
             
             buildUserBlock(doc.id, user.fullName, user.email, user.phoneNumber, formattedDateCreated);
+            usersCount++;
         });
-    } catch (error) {
+
+        usersSummaryText.innerHTML = `${usersCount}`;
+        } catch (error) {
         console.error("Error fetching users: ", error);
     }
 }
