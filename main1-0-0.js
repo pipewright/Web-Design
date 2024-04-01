@@ -1,4 +1,7 @@
 
+const usersSummaryText = document.getElementById('users-summary-text')
+const productsSummaryText = document.getElementById('products-summary-text')
+const ordersSummaryText = document.getElementById('orders-summary-text')
 
 const tabsMapping = {
     'tab-dashboard': 'dashboard-tab-body',
@@ -32,10 +35,24 @@ function initializeTabs() {
     Object.entries(tabsMapping).forEach(([tabId, tabContentId]) => {
         const tabButton = document.getElementById(tabId);
         if (tabButton) {
-        tabButton.addEventListener('click', () => {
-            hideAllTabContents(); // Hide all tab contents
-            showTabContent(tabContentId); // Show the clicked tab's content
-        });
+            tabButton.addEventListener('click', () => {
+                // Reset all tabs to unselected state
+                Object.keys(tabsMapping).forEach(otherTabId => {
+                    const otherTabButton = document.getElementById(otherTabId);
+                    if (otherTabButton) {
+                        otherTabButton.className = 'tab-option';
+                    }
+                });
+
+                // Hide all tab contents
+                hideAllTabContents();
+
+                // Show the clicked tab's content
+                showTabContent(tabContentId);
+
+                // Set the clicked tab to selected state
+                tabButton.className = 'tab-option-selected';
+            });
         }
     });
 }
