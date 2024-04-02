@@ -1,7 +1,4 @@
 
-
-
-
 const addProductButton = document.getElementById('add-product-button')
 const createProductModal = document.getElementById('create-product-modal')
 const closeProductModal = document.getElementById('close-product-modal')
@@ -152,6 +149,7 @@ async function openEditModal(productId) {
             $('#product-title').val(product.title);
             $('#product-description').val(product.description);
             $('#product-price').val(product.price);
+            $('#product-category').val(product.category)
             document.getElementById('product-photo-button').style.display = 'none'
 
             while (productPhotoContainer.firstChild) {
@@ -199,6 +197,7 @@ document.getElementById('create-product-button').addEventListener('click', async
     const titleInput = document.getElementById('product-title');
     const descriptionInput = document.getElementById('product-description');
     const priceInput = document.getElementById('product-price');
+    const categoryInput = document.getElementById('product-category')
 
     // Check if a new image was uploaded; if not, keep the existing one
     if (fileInput.files.length > 0) {
@@ -213,7 +212,8 @@ document.getElementById('create-product-button').addEventListener('click', async
                 description: descriptionInput.value,
                 price: parseFloat(priceInput.value),
                 image: photoURL,
-                status: 'available'
+                status: 'available',
+                category : categoryInput.value
             });
         } catch (error) {
             console.error('Error saving product: ', error);
@@ -225,7 +225,8 @@ document.getElementById('create-product-button').addEventListener('click', async
             description: descriptionInput.value,
             price: parseFloat(priceInput.value),
             // Image not updated, assuming existing URL is kept
-            status: 'available'
+            status: 'available',
+            category : categoryInput.value
         }, editingProductId);
     } else {
         alert("Please select an image for the product.");
